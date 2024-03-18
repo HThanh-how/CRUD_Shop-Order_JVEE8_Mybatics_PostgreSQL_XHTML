@@ -1,7 +1,0 @@
-<!-- RestaurantMapper.xml -->
-<mapper namespace="com.example.mapper.RestaurantMapper">
-    <select id="getAllRestaurants" resultType="Restaurant">
-        SELECT * FROM restaurants
-    </select>
-    <!-- Other CRUD operations -->
-</mapper>

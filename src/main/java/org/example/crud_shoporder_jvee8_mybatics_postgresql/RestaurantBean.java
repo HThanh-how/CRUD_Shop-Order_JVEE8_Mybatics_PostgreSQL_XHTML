@@ -6,19 +6,42 @@ import org.example.crud_shoporder_jvee8_mybatics_postgresql.mapper.RestaurantMap
 import org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Restaurant;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name = "restaurantBean")
+@SessionScoped
 public class RestaurantBean {
-    // Inject the mapper
-//    @Inject
-//    private RestaurantMapper restaurantMapper;
-//
-//    @PostConstruct
-//    public void init() {
-//        List<Restaurant> restaurants = restaurantMapper.getAllRestaurants();
-//        // use restaurants here
-//    }
+    @Inject
+    private RestaurantMapper restaurantMapper;
 
-    // Other CRUD operations
+    private List<Restaurant> restaurants;
+
+    @PostConstruct
+    public void init() {
+        this.restaurants = restaurantMapper.getAllRestaurants();
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return this.restaurants;
+    }
+
+    public void setRestaurantMapper(RestaurantMapper restaurantMapper) {
+        this.restaurantMapper = restaurantMapper;
+    }
+
+    public void addRestaurant(Restaurant restaurant) {
+        restaurantMapper.insertRestaurant(restaurant);
+//        this.restaurants = restaurantMapper.getAllRestaurants();
+    }
+
+    public void updateRestaurant(Restaurant restaurant) {
+        restaurantMapper.updateRestaurant(restaurant);
+        this.restaurants = restaurantMapper.getAllRestaurants();
+    }
+
+    public void deleteRestaurant(int id) {
+        restaurantMapper.deleteRestaurant(id);
+        this.restaurants = restaurantMapper.getAllRestaurants();
+    }
 }
