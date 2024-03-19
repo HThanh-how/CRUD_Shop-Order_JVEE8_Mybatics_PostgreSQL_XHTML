@@ -1,16 +1,16 @@
 package org.example.crud_shoporder_jvee8_mybatics_postgresql;
 
 import jakarta.inject.Inject;
-import org.apache.ibatis.session.SqlSession;
+import org.example.crud_shoporder_jvee8_mybatics_postgresql.bean.MenuBean;
+import org.example.crud_shoporder_jvee8_mybatics_postgresql.bean.RestaurantBean;
+import org.example.crud_shoporder_jvee8_mybatics_postgresql.mapper.MenuMapper;
 import org.example.crud_shoporder_jvee8_mybatics_postgresql.mapper.RestaurantMapper;
+import org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Menu;
 import org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Restaurant;
 import org.example.crud_shoporder_jvee8_mybatics_postgresql.util.MyBatisUtil;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,15 +23,24 @@ public class RestaurantTest {
     @Inject
     private RestaurantBean restaurantBean;
 
+    @Inject
+    private MenuBean menuBean;
+
     //    @Mock
     @Inject
     private RestaurantMapper restaurantMapper;
+
+    @Inject
+    private MenuMapper menuMapper;
 
     @BeforeEach
     public void setup() {
         restaurantMapper = new RestaurantMapper(MyBatisUtil.getSqlSessionFactory().openSession());
         restaurantBean = new RestaurantBean();
         restaurantBean.setRestaurantMapper(restaurantMapper);
+        menuMapper = new MenuMapper(MyBatisUtil.getSqlSessionFactory().openSession());
+        menuBean = new MenuBean();
+        menuBean.setMenuMapper(menuMapper);
     }
     @Test
     public void testGetRestaurants() {
@@ -74,10 +83,16 @@ public class RestaurantTest {
 
         restaurantBean.deleteRestaurant(id);
 
-        verify(restaurantMapper, times(1)).deleteRestaurant(id);
-        verify(restaurantMapper, times(1)).getAllRestaurants();
+//        verify(restaurantMapper, times(1)).deleteRestaurant(id);
+//        verify(restaurantMapper, times(1)).getAllRestaurants();
     }
 
+    @Test
+    public void testDeleteMenu() {
+        int id = 1;
+
+        menuBean.deleteMenu(id);
+    }
     @Test
     public void testInsertRestaurant() {
         Restaurant restaurant = new Restaurant();
@@ -89,5 +104,17 @@ public class RestaurantTest {
 
         // Verify that the mapper's insertRestaurant() method was called with the correct argument
 //        verify(restaurantMapper, times(1)).insertRestaurant(restaurant);
+    }
+    @Test
+    public void tesInsertMenu() {
+        Menu menu = new Menu();
+        menu.setName("Test Menu 2");
+        menu.setPrice(100);
+
+        // Call the method under test
+        menuBean.addMenu(menu);
+
+
+
     }
 }

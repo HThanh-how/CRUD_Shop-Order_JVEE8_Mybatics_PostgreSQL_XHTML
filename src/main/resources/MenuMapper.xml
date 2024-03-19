@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.crud_shoporder_jvee8_mybatics_postgresql.mapper.MenuMapper">
+    <select id="getAllMenus" resultType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Menu">
+        SELECT *
+        FROM menus
+    </select>
+    <insert id="insertMenu" parameterType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Menu">
+        INSERT INTO menus (name, price)
+        VALUES (#{name}, #{price})
+    </insert>
+    <update id="updateMenu" parameterType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Menu">
+        UPDATE menus
+        SET name  = #{name},
+            price = #{price}
+        WHERE id = #{id}
+    </update>
+    <update id="deleteMenu" parameterType="int">
+        DELETE FROM orders      WHERE menu_id = #{id};
+        DELETE FROM menus         WHERE id = #{id}
+    </update>
+</mapper>

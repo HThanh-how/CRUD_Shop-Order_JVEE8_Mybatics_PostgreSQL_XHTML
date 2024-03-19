@@ -17,5 +17,6 @@
     <mappers>
         <!-- List your mapper xml files here -->
         <mapper resource="RestaurantMapper.xml"/>
+        <mapper resource="MenuMapper.xml"/>
     </mappers>
 </configuration>

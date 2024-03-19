@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.crud_shoporder_jvee8_mybatics_postgresql.mapper.OrderMapper">
+    <select id="getAllOrders" resultType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Order">
+        SELECT * FROM orders
+    </select>
+    <insert id="insertOrder" parameterType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Order">
+        INSERT INTO orders (menu_id, quantity)
+        VALUES (#{menu_id}, #{quantity})
+    </insert>
+    <update id="updateOrder" parameterType="org.example.crud_shoporder_jvee8_mybatics_postgresql.models.Order">
+        UPDATE orders
+        SET menu_id = #{menu_id}, quantity = #{quantity}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM orders
+        WHERE id = #{id}
+    </delete>
+</mapper>
