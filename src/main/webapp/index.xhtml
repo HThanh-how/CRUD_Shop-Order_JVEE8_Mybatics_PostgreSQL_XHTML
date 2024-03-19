@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Restaurants</title>
+</h:head>
+<h:body>
+    <h1>Restaurants</h1>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Name:" for="name" />
+            <h:inputText id="name" value="#{restaurantBean.restaurant.name}" required="true" />
+
+            <h:outputLabel value="Address:" for="address" />
+            <h:inputText id="address" value="#{restaurantBean.restaurant.address}" required="true" />
+
+            <h:commandButton value="Add Restaurant" action="#{restaurantBean.addRestaurant()}" />
+        </h:panelGrid>
+    </h:form>
+<!--    <h:outputText value="Number of restaurants: #{restaurantBean.restaurants.size()}"/>-->
+    <h:dataTable value="#{restaurantBean.restaurants}" var="restaurant">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{restaurant.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{restaurant.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Address</f:facet>
+            #{restaurant.address}
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

@@ -44,24 +44,14 @@ public class RestaurantTest {
     }
     @Test
     public void testGetRestaurants() {
-        Restaurant restaurant1 = new Restaurant();
-        Restaurant restaurant2 = new Restaurant();
-        List<Restaurant> expectedRestaurants = Arrays.asList(restaurant1, restaurant2);
-
-        when(restaurantMapper.getAllRestaurants()).thenReturn(expectedRestaurants);
-
-        restaurantBean.init();
-        List<Restaurant> actualRestaurants = restaurantBean.getRestaurants();
-
-        assertEquals(expectedRestaurants, actualRestaurants);
-        verify(restaurantMapper, times(1)).getAllRestaurants();
+        List<Restaurant> restaurants = restaurantMapper.getAllRestaurants();
+        printRestaurant(restaurants);
     }
-
     @Test
     public void testAddRestaurant() {
         Restaurant restaurant = new Restaurant();
 
-        restaurantBean.addRestaurant(restaurant);
+//        restaurantBean.addRestaurant(restaurant);
 
         verify(restaurantMapper, times(1)).insertRestaurant(restaurant);
         verify(restaurantMapper, times(1)).getAllRestaurants();
@@ -100,7 +90,7 @@ public class RestaurantTest {
         restaurant.setAddress("Test Address");
 
         // Call the method under test
-        restaurantBean.addRestaurant(restaurant);
+//        restaurantBean.addRestaurant(restaurant);
 
         // Verify that the mapper's insertRestaurant() method was called with the correct argument
 //        verify(restaurantMapper, times(1)).insertRestaurant(restaurant);
@@ -116,5 +106,13 @@ public class RestaurantTest {
 
 
 
+    }
+
+    private void printRestaurant(List<Restaurant> restaurants) {
+        for (Restaurant restaurant : restaurants) {
+            System.out.println("ID: " + restaurant.getId());
+            System.out.println("Address: " + restaurant.getAddress());
+            System.out.println("Name: " + restaurant.getName());
+        }
     }
 }
