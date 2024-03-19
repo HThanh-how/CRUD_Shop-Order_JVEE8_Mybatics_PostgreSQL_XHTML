@@ -59,5 +59,8 @@ public class RestaurantBean {
         this.restaurants = restaurantMapper.getAllRestaurants();
 //        this.restaurant = new Restaurant();
     }
-
+public String editRestaurant(Restaurant restaurant) {
+    this.restaurant = restaurant;
+    return "editRestaurant"; // This will redirect to editRestaurant.xhtml
+}
 }
