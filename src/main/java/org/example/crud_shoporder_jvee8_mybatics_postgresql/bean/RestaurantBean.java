@@ -57,7 +57,7 @@ public class RestaurantBean {
     public void deleteRestaurant(int id) {
         restaurantMapper.deleteRestaurant(id);
         this.restaurants = restaurantMapper.getAllRestaurants();
-        this.restaurant = new Restaurant();
+//        this.restaurant = new Restaurant();
     }
 
 }
