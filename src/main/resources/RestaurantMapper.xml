@@ -14,6 +14,8 @@
         WHERE id = #{id}
     </update>
     <delete id="deleteRestaurant" parameterType="int">
+        DELETE FROM orders
+        WHERE restaurant_id = #{id};
         DELETE FROM restaurants
         WHERE id = #{id}
     </delete>

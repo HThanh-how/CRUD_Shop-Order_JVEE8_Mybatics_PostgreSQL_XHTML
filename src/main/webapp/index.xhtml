@@ -19,8 +19,10 @@
             <h:inputText id="address" value="#{restaurantBean.restaurant.address}" required="true" />
 
             <h:commandButton value="Add Restaurant" action="#{restaurantBean.addRestaurant()}" />
+
         </h:panelGrid>
     </h:form>
+
 <!--    <h:outputText value="Number of restaurants: #{restaurantBean.restaurants.size()}"/>-->
     <h:dataTable value="#{restaurantBean.restaurants}" var="restaurant">
         <h:column>
@@ -35,6 +37,12 @@
             <f:facet name="header">Address</f:facet>
             #{restaurant.address}
         </h:column>
+        <h:column>
+            <f:facet name="header">Actions</f:facet>
+            <h:form>
+                <h:commandButton value="Delete" action="#{restaurantBean.deleteRestaurant(restaurant.id)}" />
+            </h:form>
+</h:column>
     </h:dataTable>
 </h:body>
 </html>

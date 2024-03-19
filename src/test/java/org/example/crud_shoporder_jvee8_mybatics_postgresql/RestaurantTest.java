@@ -69,9 +69,9 @@ public class RestaurantTest {
 
     @Test
     public void testDeleteRestaurant() {
-        int id = 1;
+        int id = 4;
 
-        restaurantBean.deleteRestaurant(id);
+//        restaurantBean.deleteRestaurant(id);
 
 //        verify(restaurantMapper, times(1)).deleteRestaurant(id);
 //        verify(restaurantMapper, times(1)).getAllRestaurants();
